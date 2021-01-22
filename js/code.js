@@ -11,39 +11,45 @@ function doLogin()
 	firstName = "";
 	lastName = "";
 	
-	var fName = document.getElementById("firstName").value;
-	var lName = document.getElementById("lastName").value;
 	var login = document.getElementById("loginName").value;
 	var password = document.getElementById("loginPassword").value;
 //	var hash = md5( password );
 	
 	document.getElementById("loginResult").innerHTML = "";
 
-	var jsonPayload = '{"firstName" : "' + fName + '", "lastName" : "' + lName + '"';
-	  jsonPayload += ', "login" : "' + login + '", "password" : "' + password + '"}';
-	var url = urlBase + '/Register.' + extension;
-	console.log(jsonPayload);
+//	var jsonPayload = '{"login" : "' + login + '", "password" : "' + hash + '"}';
+	var jsonPayload = '{"login" : "' + login + '", "password" : "' + password + '"}';
+	var url = urlBase + '/Login.' + extension;
 
 	var xhr = new XMLHttpRequest();
-	xhr.open("POST", url, false);
+	xhr.open("POST", url, true);
 	xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
 	try
 	{
-		xhr.send(jsonPayload);
-		
-		var jsonObject = JSON.parse( xhr.responseText );
-		console.log(jsonObject);
-		userId = jsonObject.id;
-		
-		if( userId < 1 )
+		xhr.onreadystatechange = function() 
 		{
-			document.getElementById("loginResult").innerHTML = jsonObject.message;
-			return;
-		}
+			if (this.readyState == 4 && this.status == 200) 
+			{
+				var jsonObject = JSON.parse( xhr.responseText );
 		
+				userId = jsonObject.id;
+		
+				if( userId < 1 )
+				{
+					document.getElementById("loginResult").innerHTML = "User/Password combination incorrect";
+					return;
+				}
+		
+				firstName = jsonObject.firstName;
+				lastName = jsonObject.lastName;
 
+				saveCookie();
 	
-		window.location.href = "color.html";
+				window.location.href = "color.html";
+			}
+		};
+		
+		xhr.send(jsonPayload);
 	}
 	catch(err)
 	{
@@ -52,7 +58,63 @@ function doLogin()
 
 }
 
-/*
+function doRegister()
+{
+	userId = 0;
+	firstName = "";
+	lastName = "";
+  email = "";
+	
+	var login = document.getElementById("registerName").value;
+	var password = document.getElementById("registerPassword").value;
+  var email = document.getElementById("registerEmail").value;
+  var firstName = document.getElementById("fName").value;
+  var lastName = document.getElementById("lName").value;
+  //var hash = md5( password );
+	
+	document.getElementById("registrationResult").innerHTML = "";
+
+//	var jsonPayload = '{"login" : "' + login + '", "password" : "' + hash + '"}';
+	var jsonPayload = '{"login" : "' + login + '", "password" : "' + password + '", "firstName" : "' + firstName + '", "lastName" : "' + lastName + '", "email" : "' + email + '"}';
+	var url = urlBase + '/Register.' + extension;
+
+	var xhr = new XMLHttpRequest();
+	xhr.open("POST", url, true);
+	xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
+	try
+	{
+   		xhr.onreadystatechange = function() 
+		{
+			if (this.readyState == 4 && this.status == 200) 
+			{
+				var jsonObject = JSON.parse( xhr.responseText );
+		
+				userId = jsonObject.id;
+		
+				if( userId < 1 )
+				{
+					document.getElementById("registrationResult").innerHTML = jsonObject.message;
+					return;
+				}
+		
+				firstName = jsonObject.firstName;
+				lastName = jsonObject.lastName;
+
+				saveCookie();
+	
+				window.location.href = "color.html";
+			}
+		};
+		
+		xhr.send(jsonPayload);
+	}
+	catch(err)
+	{
+		document.getElementById("registrationResult").innerHTML = err.message;
+	}
+
+}
+
 function saveCookie()
 {
 	var minutes = 20;
@@ -93,7 +155,6 @@ function readCookie()
 		document.getElementById("userName").innerHTML = "Logged in as " + firstName + " " + lastName;
 	}
 }
-*/
 
 function doLogout()
 {
@@ -103,7 +164,63 @@ function doLogout()
 	document.cookie = "firstName= ; expires = Thu, 01 Jan 1970 00:00:00 GMT";
 	window.location.href = "index.html";
 }
+function loginDisappear()
+{
+  document.getElementById("showLogin").style.display = "none";
+  document.getElementById("showRegistration").style.display = "none";
+}
+function registerDisappear()
+{
+  document.getElementById("showRegistration").style.display = "none";
+  document.getElementById("showLogin").style.display = "none";
+}
 /*
+function doLogintest()
+{
+	userId = 0;
+	firstName = "";
+	lastName = "";
+	
+	var fName = document.getElementById("firstName").value;
+	var lName = document.getElementById("lastName").value;
+	var login = document.getElementById("loginName").value;
+	var password = document.getElementById("loginPassword").value;
+//	var hash = md5( password );
+	
+	document.getElementById("loginResult").innerHTML = "";
+
+	var jsonPayload = '{"firstName" : "' + fName + '", "lastName" : "' + lName + '"';
+	  jsonPayload += ', "login" : "' + login + '", "password" : "' + password + '"}';
+	var url = urlBase + '/Register.' + extension;
+	console.log(jsonPayload);
+
+	var xhr = new XMLHttpRequest();
+	xhr.open("POST", url, false);
+	xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
+	try
+	{
+		xhr.send(jsonPayload);
+		
+		var jsonObject = JSON.parse( xhr.responseText );
+		console.log(jsonObject);
+		userId = jsonObject.id;
+		
+		if( userId < 1 )
+		{
+			document.getElementById("loginResult").innerHTML = jsonObject.message;
+			return;
+		}
+		
+
+	
+		window.location.href = "color.html";
+	}
+	catch(err)
+	{
+		document.getElementById("loginResult").innerHTML = err.message;
+	}
+
+}
 function addColor()
 {
 	var newColor = document.getElementById("colorText").value;
