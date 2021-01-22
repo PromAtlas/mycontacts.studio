@@ -102,7 +102,9 @@ function doRegister()
 
 				saveCookie();
 	
-				window.location.href = "color.html";
+				document.getElementById("registerDiv").style.display = "none";
+	      			document.getElementById("loginDiv").style.display = "inherit";
+				//window.location.href = "index.html";
 			}
 		};
 		
