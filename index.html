@@ -3,50 +3,40 @@
 	<title>COP 4331 LAMP Stack Demo</title>
 	<script type="text/javascript" src="js/md5.js"></script>
 	<script type="text/javascript" src="js/code.js"></script>
-	<script type="text/javascript" src="js/jquery-3.5.1.js"></script>
-    <link href="css/styles.css" rel="stylesheet">	
+	<link href="images/favicon.ico" rel="icon">
+    <link href="css/style.css" rel="stylesheet">	
     <link href="https://fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet">
 </head>
+
 <body>
+	<center>
+	<!--<h1 id="title">COP 4331 LAMP Stack Demo</h1>-->
 
-<div id="startOptions">
-  <button type="button" id="showRegistration" class="buttons" onclick="loginDisappear()"> Register </button>
-  <button type="button" id="showLogin" class="buttons" onclick="registerDisappear()"> Login </button>
-</div>
+	<table><tr>
+		<th>
+			<div id="loginDiv">
+				<img src="images/user-male.png" alt="user icon" width="150" height="150">
+				<br />
+				<span id="inner-title">WELCOME BACK</span><br />
+				<input type="text" id="loginName" placeholder="Username" /><br />
+				<input type="password" id="loginPassword" placeholder="Password"/><br />
+				<button type="button" id="loginButton" class="buttons" onclick="doLogin();"> Sign in </button>
+				<span id="loginResult"></span>
+			</div>
+		</th>
+		<th>
+			<div id="pictureDiv">
+				<span class="register-text">Don't have an account?</span><br />
+				<span class="register-text">Register now</span><br />
+				<button type="button" id="signupButton" class="buttons" onclick="document.location='register.html'"> Sign up </button>
+			</div>
+		</th>
+	</tr></table>
 
-<script>
-$("#showRegistration").click(function()
-  {
-    $("#registerDiv").show();
-    $("#loginDiv").hide();
-  });
-$("#showLogin").click(function()
-  {
-    $("#loginDiv").show();
-    $("#registerDiv").hide();
-  });
-</script>
 
-<div id="loginDiv">
-	<span id="inner-title">PLEASE LOG IN</span>
-	<input type="text" id="loginName" placeholder="Username" /><br />
-	<input type="password" id="loginPassword" placeholder="Password"/><br />  
-  <button type="button" id="loginButton" class="buttons" onclick="doLogin();"> Login </button>
-	<input type="button" class="buttons" onclick="location.href='http://mycontacts.studio/';" value="Back" />
-  <span id="loginResult"></span>
-</div>
 
-<div id="registerDiv" >
-	<span id="inner-title">PLEASE REGISTER</span>
-	<input type="text" id="registerName" placeholder="Username" /><br />
-	<input type="password" id="registerPassword" placeholder="Password"/><br />
-  <input type="email" id="registerEmail" placeholder="Email" /><br />
-	<input type="text" id="fName" placeholder="First Name"/><br />
-  <input type="text" id="lName" placeholder="Last Name"/><br />
-  <button type="button" id="registerButton" class="buttons" onclick="doRegister();"> Register </button>
-	<input type="button" class="buttons" onclick="location.href='http://mycontacts.studio/';" value="Back" />
-  <span id="registrationResult"></span>
-</div>
+	
+	</center>
 
 </body>
 </html>
