@@ -32,8 +32,8 @@ function doLogin()
 			{
 				var jsonObject = JSON.parse( xhr.responseText );
 		
-				userId = jsonObject.id;
-		
+				userId = jsonObject.userId;
+				console.log(userId);
 				if( userId < 1 )
 				{
 					document.getElementById("loginResult").innerHTML = "User/Password combination incorrect";
@@ -45,7 +45,7 @@ function doLogin()
 
 				saveCookie();
 	
-				window.location.href = "color.html";
+				window.location.href = "main.html";
 			}
 		};
 		
@@ -89,7 +89,7 @@ function doRegister()
 			{
 				var jsonObject = JSON.parse( xhr.responseText );
 		
-				userId = jsonObject.id;
+				userId = jsonObject.userId;
 		
 				if( userId < 1 )
 				{
