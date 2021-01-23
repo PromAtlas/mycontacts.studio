@@ -72,7 +72,7 @@ function doRegister()
   var lastName = document.getElementById("lastName").value;
   //var hash = md5( password );
 	
-	document.getElementById("registrationResult").innerHTML = "";
+	document.getElementById("registerResult").innerHTML = "";
 
 //	var jsonPayload = '{"login" : "' + login + '", "password" : "' + hash + '"}';
 	var jsonPayload = '{"login" : "' + login + '", "password" : "' + password + '", "firstName" : "' + firstName + '", "lastName" : "' + lastName + '", "email" : "' + email + '"}';
