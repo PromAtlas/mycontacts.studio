@@ -65,11 +65,11 @@ function doRegister()
 	lastName = "";
   email = "";
 	
-	var login = document.getElementById("registerName").value;
-	var password = document.getElementById("registerPassword").value;
-  var email = document.getElementById("registerEmail").value;
-  var firstName = document.getElementById("fName").value;
-  var lastName = document.getElementById("lName").value;
+	var login = document.getElementById("loginName").value;
+	var password = document.getElementById("loginPassword").value;
+  var email = document.getElementById("Email").value;
+  var firstName = document.getElementById("firstName").value;
+  var lastName = document.getElementById("lastName").value;
   //var hash = md5( password );
 	
 	document.getElementById("registrationResult").innerHTML = "";
@@ -102,9 +102,7 @@ function doRegister()
 
 				saveCookie();
 	
-				document.getElementById("registerDiv").style.display = "none";
-	      			document.getElementById("loginDiv").style.display = "inherit";
-				//window.location.href = "index.html";
+				window.location.href = "main.html";
 			}
 		};
 		
