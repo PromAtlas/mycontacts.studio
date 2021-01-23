@@ -72,7 +72,8 @@ function doRegister()
   var lastName = document.getElementById("lastName").value;
   //var hash = md5( password );
 	
-	document.getElementById("registrationResult").innerHTML = "";
+	//Causes an error, not super sure why though
+	//document.getElementById("registrationResult").innerHTML = "";
 
 //	var jsonPayload = '{"login" : "' + login + '", "password" : "' + hash + '"}';
 	var jsonPayload = '{"login" : "' + login + '", "password" : "' + password + '", "firstName" : "' + firstName + '", "lastName" : "' + lastName + '", "email" : "' + email + '"}';
