@@ -26,7 +26,7 @@
 		}
 		else
 		{
-			returnWithError( "No Records Found" );
+			returnWithError( "No records found" );
 		}
 		$conn->close();
 	}

@@ -9,25 +9,14 @@
 	}
 	else
 	{	
-		$sql = "SELECT Login FROM Users where Login='" . $inData["login"] . "'";
-		$result = $conn->query($sql);
-		if ($result->num_rows > 0)
-		{
-			returnWithError( "User already exists." );
-		}
+		// Change to insert a new record into the DB
+		$sql = "INSERT into Contacts (FirstName,LastName,Email,Phone,Address,ZipCode,City,State,UserID) VALUES ('" 
+		. $inData["firstName"] . "','" . $inData["lastName"] . "','". $inData["email"] . "','" . $inData["phone"] . "','" . $inData["address"] . 
+		"','" . $inData["zipCode"] . "','" . $inData["city"] . "','" . $inData["state"] . "','" . $inData["userId"] . "')";
+		if ($conn->query($sql) === TRUE)
+			successfulCreation();
 		else
-		{
-			$sql = "INSERT into Users (FirstName,LastName,Login,Password) VALUES ('" 
-			. $inData["firstName"] . "','" . $inData["lastName"] . "','". $inData["login"] . "','" . $inData["password"] . "')";
-			if ($conn->query($sql) === TRUE)
-			{
-				successfulCreation();
-			}
-			else
-			{
-				returnWithError( "Account creation failed." );
-			}
-		}
+			returnWithError( "Contact creation failed." );
 		$conn->close();
 	}
 	
@@ -50,7 +39,7 @@
 	
 	function successfulCreation()
 	{
-		$retValue = '{"id" : 1, "message" : "Successfully created new user"}';
+		$retValue = '{"id" : 1, "message" : "Successfully created new contact"}';
 		sendResultInfoAsJson( $retValue );
 	}
 	

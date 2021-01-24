@@ -9,25 +9,20 @@
 	}
 	else
 	{	
-		$sql = "SELECT Login FROM Users where Login='" . $inData["login"] . "'";
-		$result = $conn->query($sql);
-		if ($result->num_rows > 0)
-		{
-			returnWithError( "User already exists." );
-		}
-		else
-		{
-			$sql = "INSERT into Users (FirstName,LastName,Login,Password) VALUES ('" 
-			. $inData["firstName"] . "','" . $inData["lastName"] . "','". $inData["login"] . "','" . $inData["password"] . "')";
+			// Alter current record with info passed in.
+			$sql = "UPDATE Contacts SET FirstName = '" . $inData["firstName"] . "', LastName = '" . $inData["lastName"] 
+			. "', Email = '" . $inData["email"] . "', Phone = '" . $inData["phone"] . "', Address = '" . $inData["address"] 
+			. "', ZipCode = '" . $inData["zipCode"] . "', City = '" . $inData["city"] . "', State = '" . $inData["state"]
+			. "' WHERE ContactID = '" . $inData["contactId"] . "'";
 			if ($conn->query($sql) === TRUE)
 			{
 				successfulCreation();
 			}
 			else
 			{
-				returnWithError( "Account creation failed." );
+				returnWithError( "Contact update failed." );
 			}
-		}
+	
 		$conn->close();
 	}
 	
@@ -50,7 +45,7 @@
 	
 	function successfulCreation()
 	{
-		$retValue = '{"id" : 1, "message" : "Successfully created new user"}';
+		$retValue = '{"id" : 1, "message" : "Successfully updated contact"}';
 		sendResultInfoAsJson( $retValue );
 	}
 	
