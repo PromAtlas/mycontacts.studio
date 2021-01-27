@@ -90,11 +90,11 @@ function doRegister()
 			{
 				var jsonObject = JSON.parse( xhr.responseText );
 		
-				userId = jsonObject.userId;
+				userId = jsonObject.id;
 		
 				if( userId < 1 )
 				{
-					document.getElementById("registrationResult").innerHTML = jsonObject.message;
+					document.getElementById("registerResult").innerHTML = jsonObject.message;
 					return;
 				}
 
@@ -108,7 +108,7 @@ function doRegister()
 	}
 	catch(err)
 	{
-		document.getElementById("registrationResult").innerHTML = err.message;
+		document.getElementById("registerResult").innerHTML = err.message;
 	}
 
 }
