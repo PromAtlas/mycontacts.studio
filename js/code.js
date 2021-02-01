@@ -90,14 +90,15 @@ function doRegister()
 			{
 				var jsonObject = JSON.parse( xhr.responseText );
 		
-				userId = jsonObject.id;
+				id = jsonObject.id;
 		
-				if( userId < 1 )
+				if( id < 1 )
 				{
 					document.getElementById("registerResult").innerHTML = jsonObject.message;
 					return;
 				}
 
+        doLogin();
 				saveCookie();
 	
 				window.location.href = "main.html";
@@ -299,7 +300,7 @@ function view()
 
 function array2table(array)
 {
-  var table = "<table border=1>";
+  var table = "<table class='table'>";
   var link = "view.html";
   for (var i = 1; i < array.length; i++)
   {
@@ -321,9 +322,9 @@ function array2table(array)
           else if (j == 2)
           {
             //var val = parseInt(array[i][j], 10);
-            table += "<td><button type='button' onclick='viewContact(" + array[i][j] + ")';> View </button></td>";
-            table += "<td><button type='button' onclick='editContact(" + array[i][j] + ")';> Edit </button></td>";
-            table += "<td><button type='button' onclick='deleteContact(" + array[i][j] + ")';> Delete </button></td>";
+            table += "<td><button type='button' class='btn btn-secondary' onclick='viewContact(" + array[i][j] + ")';> View </button></td>";
+            table += "<td><button type='button' class='btn btn-secondary' onclick='editContact(" + array[i][j] + ")';> Edit </button></td>";
+            table += "<td><button type='button' class='btn btn-secondary' onclick='deleteContact(" + array[i][j] + ")';> Delete </button></td>";
           }
           else
           {
