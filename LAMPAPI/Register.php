@@ -21,11 +21,7 @@
 			. $inData["firstName"] . "','" . $inData["lastName"] . "','". $inData["login"] . "','" . $inData["password"] . "')";
 			if ($conn->query($sql) === TRUE)
 			{
-				$sql = "SELECT UserID,FirstName,LastName FROM Users where Login='" . $inData["login"] . "' and Password='" . $inData["password"] . "'";
-		    		$newResult = $conn->query($sql);
-        			$row = $newResult->fetch_assoc();
-        			$id = $row["UserID"];
-				successfulCreation($id);
+				successfulCreation();
 			}
 			else
 			{
@@ -52,9 +48,9 @@
 		sendResultInfoAsJson( $retValue );
 	}
 	
-	function successfulCreation($id)
+	function successfulCreation()
 	{
-		$retValue = '{"userId":' . $id . ', "message" : "Successfully created new user"}';
+		$retValue = '{"id" : 1, "message" : "Successfully created new user"}';
 		sendResultInfoAsJson( $retValue );
 	}
 	
