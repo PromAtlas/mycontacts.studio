@@ -30,6 +30,10 @@ div{
 
 }
 
+#loggedInDiv {
+  height: 100px;
+}
+
 #registerDiv input{
 	line-height: 2.3;
 }
