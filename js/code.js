@@ -1,7 +1,7 @@
 var urlBase = 'http://mycontacts.studio/LAMPAPI';
 var extension = 'php';
 
-var userId = 0;
+var userId = 0; 
 var contactId = 0;
 var firstName = "";
 var lastName = "";
@@ -180,14 +180,15 @@ function registerDisappear()
 
 function addContact()
 {
-  var cfirstName = document.getElementById("firstName").value;
-	var clastName = document.getElementById("lastName").value;
-	var cemail = document.getElementById("email").value;
-	var cphone = document.getElementById("phone").value;
-	var caddress = document.getElementById("address").value;
-	var czipCode = document.getElementById("zipCode").value;
-	var ccity = document.getElementById("city").value;
-	var cstate = document.getElementById("state").value;
+  var cfirstName = document.getElementById("firstNameCont").value;
+	var clastName = document.getElementById("lastNameCont").value;
+	var cemail = document.getElementById("emailCont").value;
+	var cphone = document.getElementById("phoneCont").value;
+	var caddress = document.getElementById("addressCont").value;
+	var czipCode = document.getElementById("zipCodeCont").value;
+	var ccity = document.getElementById("cityCont").value;
+	var cstate = document.getElementById("stateCont").value;
+  var search = document.getElementById("searchText").value;
 	document.getElementById("contactAddResult").innerHTML = "";
 	
 	var jsonPayload = '{"firstName" : "' + cfirstName + '", "lastName" : "' + clastName + '", "email" : "' + cemail + '", "phone" : "' + cphone + '", "address" : "' + caddress + '", "zipCode" : "' + czipCode + '", "city" : "' + ccity + '", "state" : "' + cstate + '", "userId" : ' + userId + '}';
@@ -203,25 +204,34 @@ function addContact()
 			if (this.readyState == 4 && this.status == 200) 
 			{
 				document.getElementById("contactAddResult").innerHTML = "Contact has been added";
+        searchContact();
 			}
+      
 		};
+
+    
 		xhr.send(jsonPayload);
 	}
 	catch(err)
 	{
 		document.getElementById("contactAddResult").innerHTML = err.message;
 	}
-	
+	//searchContact();
 }
 
 function searchContact()
 {
 	var name = document.getElementById("searchText").value;
+  if (name == "")
+  {
+    return;
+  }
+ 
 	document.getElementById("contactSearchResult").innerHTML = "";
 	
 	var contactList = [['firstName', 'lastName', 'contactID']];
+  var jsonPayload = '{"name" : "' + name + '","userId" : ' + userId + '}'; 
 	
-	var jsonPayload = '{"name" : "' + name + '","userId" : ' + userId + '}';
 	var url = urlBase + '/Search.' + extension;
 	
 	var xhr = new XMLHttpRequest();
@@ -233,8 +243,8 @@ function searchContact()
 		{
 			if (this.readyState == 4 && this.status == 200) 
 			{
-				document.getElementById("contactSearchResult").innerHTML = "Contact(s) has been retrieved";
 				var jsonObject = JSON.parse( xhr.responseText );
+  
         //var test = jsonObject.contacts[1].firstName;
 				
 			  for( var i=0; i<jsonObject.num_rows; i++ )
@@ -243,6 +253,14 @@ function searchContact()
 				}
         
         console.table(contactList);
+        if (contactList.length == 1)
+        {
+          document.getElementById("contactSearchResult").innerHTML = "<br> No Matching Contacts";
+        }
+        else
+        {
+          document.getElementById("contactSearchResult").innerHTML = "Contact(s) retrieved";
+        }
         document.getElementById("contactTable").innerHTML = array2table(contactList);
 			}
 		};
@@ -278,15 +296,14 @@ function view()
 			{
         var jsonObject = JSON.parse( xhr.responseText );
 				//document.getElementById("firstName").innerHTML = firstName;
-        document.getElementById("firstName").innerHTML = "First Name: " + jsonObject.firstName;
-        document.getElementById("lastName").innerHTML = "Last Name: " + jsonObject.lastName;
-        document.getElementById("email").innerHTML = "Email: " + jsonObject.email;
-        document.getElementById("phone").innerHTML = "Phone #: " + jsonObject.phone;
-        document.getElementById("address").innerHTML = "Address: " + jsonObject.address;
-        document.getElementById("zipCode").innerHTML = "Zip Code: " + jsonObject.zipcode;
-        document.getElementById("city").innerHTML = "City: " + jsonObject.city;
-        document.getElementById("state").innerHTML = "State: " + jsonObject.state;
-        
+        document.getElementById("firstNameView").innerHTML = "First Name: " + jsonObject.firstName;
+        document.getElementById("lastNameView").innerHTML = "Last Name: " + jsonObject.lastName;
+        document.getElementById("emailView").innerHTML = "Email: " + jsonObject.email;
+        document.getElementById("phoneView").innerHTML = "Phone #: " + jsonObject.phone;
+        document.getElementById("addressView").innerHTML = "Address: " + jsonObject.address;
+        document.getElementById("zipCodeView").innerHTML = "Zip Code: " + jsonObject.zipcode;
+        document.getElementById("cityView").innerHTML = "City: " + jsonObject.city;
+        document.getElementById("stateView").innerHTML = "State: " + jsonObject.state;
 			}
 		};
 		xhr.send(jsonPayload);
@@ -321,6 +338,7 @@ function array2table(array)
           }
           else if (j == 2)
           {
+          
             //var val = parseInt(array[i][j], 10);
             table += "<td><button type='button' onclick='viewContact(" + array[i][j] + ")';> View </button></td>";
             table += "<td><button type='button' onclick='editContact(" + array[i][j] + ")';> Edit </button></td>";
@@ -420,8 +438,8 @@ function confirmEdit()
 	{
 		document.getElementById("contactEditResult").innerHTML = err.message;
 	}
-	
 }
+
 function deleteContact(conId)
 {
   contactId = conId;
@@ -431,6 +449,8 @@ function deleteContact(conId)
 
 function deleteC()
 {
+  //var search = document.getElementById("searchText").value;
+  
   var jsonPayload = '{"contactId" : ' + contactId + '}';
 	var url = urlBase + '/Delete.' + extension;
   
@@ -452,6 +472,8 @@ function deleteC()
 					//document.getElementById("deleteResult").innerHTML = jsonObject.message;
 					return;
 				}
+        
+        searchContact();
         
 			}
 		};
