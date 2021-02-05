@@ -14,26 +14,58 @@
     view();
 	}, false);
 	</script>
+ 
+   <!-- temp style to not work on same page and cause issues -->
+   <style>
+   
+   
+   
+   #loggedInDiv {
+     padding-bottom: 50px;
+     margin-top: 100px;
+	   height: 60px;
+	   width: 450px;
+	   background: rgba(240,240,240,.70);
+   }
+     
+   #viewDiv {
+    	height: 300px;
+    	margin-top: 10px;
+    	width: 450px;
+    	background: rgba(240,240,240,.70);
+   }
+   
+   #firstNameView {
+     font-size: 25px;
+     
+   }
+   
+   #lastNameView {
+     font-size: 25px;
+   }
+   
+   p {
+     font-size: 20px;
+   }
+   
+   </style>
     
 </head>
 
 <body>
 	<center>
-	<h1 id="title">COP 4331 LAMP Stack Demo</h1>
- <div id="loggedInDiv">
-	<span id="userName"></span><br />
+  <div id="loggedInDiv">
+	<span id="userName"></span>
 	<button type="button" id="logoutButton" class="buttons" onclick="doLogout();"> Log Out </button>
 </div>
 
-	<div id="mainDiv">
-		<span id="firstName"></span><br />
-   <span id="lastName"></span><br />
-   <span id="email"></span><br />
-   <span id="phone"></span><br />
-   <span id="address"></span><br />
-   <span id="zipCode"></span><br />
-   <span id="city"></span><br />
-   <span id="state"></span><br />
+	<div id="viewDiv">
+	 <p><span id="firstNameView"></span> <span id="lastNameView"></span></p>
+   <p><span id="emailView"></span></p>
+   <p><span id="phoneView"></span></p>
+   <p><span id="addressView"></span></p>
+   <p><span id="cityView"></span>, <span id="stateView"></span> <span id="zipCodeView"></span></p>
+   <button type="button" id=viewBackButton" class="buttons" onclick="document.location='main.html'"> Back </button><br />
 	</div>
 	</center>
  
