@@ -296,8 +296,8 @@ function view()
 			{
         var jsonObject = JSON.parse( xhr.responseText );
 				//document.getElementById("firstName").innerHTML = firstName;
-        document.getElementById("firstNameView").innerHTML = "First Name: " + jsonObject.firstName;
-        document.getElementById("lastNameView").innerHTML = "Last Name: " + jsonObject.lastName;
+        document.getElementById("firstNameView").innerHTML = jsonObject.firstName;
+        document.getElementById("lastNameView").innerHTML = jsonObject.lastName;
         document.getElementById("emailView").innerHTML = "Email: " + jsonObject.email;
         document.getElementById("phoneView").innerHTML = "Phone #: " + jsonObject.phone;
         document.getElementById("addressView").innerHTML = "Address: " + jsonObject.address;
