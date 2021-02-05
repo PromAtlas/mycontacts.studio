@@ -422,3 +422,55 @@ function confirmEdit()
 	}
 	
 }
+function deleteContact(conId)
+{
+  contactId = conId;
+  saveCookie();
+  confirmDelete();
+}
+
+function deleteC()
+{
+  var jsonPayload = '{"contactId" : ' + contactId + '}';
+	var url = urlBase + '/Delete.' + extension;
+  
+  var xhr = new XMLHttpRequest();
+	xhr.open("POST", url, true);
+	xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
+	try
+	{
+		xhr.onreadystatechange = function() 
+		{
+			if (this.readyState == 4 && this.status == 200) 
+			{
+        var jsonObject = JSON.parse( xhr.responseText );
+        
+        id = jsonObject.id;
+		
+				if( id < 1 )
+				{
+					//document.getElementById("deleteResult").innerHTML = jsonObject.message;
+					return;
+				}
+        
+			}
+		};
+		xhr.send(jsonPayload);
+	}
+	catch(err)
+	{
+		//document.getElementById("deleteResult").innerHTML = err.message;
+	}
+}
+
+function confirmDelete()
+{
+  if (confirm("Are you sure you want to Delete the Contact?")) 
+  {
+    deleteC();
+  } 
+  else 
+  {
+    return; 
+  }
+}
