@@ -2,7 +2,12 @@ body {
     background-image: url("../images/background2.jpg");
     background-position: center;
 	background-repeat: no-repeat;
+	background-attachment: fixed;
 	background-size: cover;
+}
+
+.mainPage{
+	background-image: url("../images/testing3.jpg");
 }
 
 h1 {
@@ -22,22 +27,55 @@ span{
 }
 
 div{
-	height: 450px;
+	border-radius: 5px;
 	margin-top: 60px;
+ 	margin-bottom: 60px;
 	padding: 30px 30px;
+	align-items: center;
+}
+
+#searchDiv{
+padding-bottom: 10px;
+padding-top: 15px;
+  margin-top: 10px;
+ 	margin-bottom: 5px;
+	height: 140px;
+	width: 620px;
+	background: rgba(240,240,240,.70);
+}
+#loggedInDiv {
+padding-bottom: 10px;
+padding-top: 5px;
+  margin-top: 60px;
+ 	margin-bottom: 5px;
+	height: 100px;
+	width: 620px;
+	background: rgba(240,240,240,.70);
+}
+#addDiv{
+ padding-top: 50px;
+	margin-top: 10px;
+	margin-bottom: 5px;
+	height: 480px;
+	width: 620px;
+	background: rgba(240,240,240,.70);
+}
+
+#registerDiv{
+	height: 420px;
+	padding-top: 60px;
 	width: 350px;
 	background: rgba(240,240,240,.50);
-
 }
 
-#loggedInDiv {
-  height: 100px;
-}
-
-#registerDiv input{
+#registerDiv input, #addDiv input{
 	line-height: 2.3;
 }
-
+#loginDiv{
+	height: 450px;
+	width: 350px;
+	background: rgba(240,240,240,.50);
+}
 #pictureDiv{
 	width: 240px;
 	height: 260px;
@@ -48,17 +86,37 @@ div{
 	padding-top: 220px;
 }
 
+#searchText{
+	width: 300px;
+}
+#firstNameCont, #lastNameCont, #emailCont, #phoneCont{
+	width: 215px;
+}
+#zipCodeCont, #cityCont, #stateCont{
+	width: 135px;
+}
+#addressCont{
+	width: 465px;
+}
+
 .buttons{
-	border-radius: 15px;
+	border-radius: 10px;
 	margin: 25px 25px;
 	cursor: pointer;
 	background-color: #F2BB5F;
 	height: 30px;
 	width: 100px;
+	outline:none;
+}
+#contactAddButton{
+  width: 150px;
 }
 
 .buttons:hover{
   background-color: #DF697C;
+}
+.buttons:after{
+	outline:none;
 }
 
 input {
@@ -69,6 +127,35 @@ input {
     line-height: 3.6;
     color: black;
 }
+
+
+.collapsible {
+  background-color: #F2BB5F;
+  color: #444;
+  cursor: pointer;
+	border-radius: 10px;
+	margin: 5px 5px;
+	height: 30px;
+	width: 460px;
+  text-align: center;
+  font-size: 15px;
+}
+
+.content {
+  max-height: 0;
+  overflow: hidden;  
+  transition: max-height 0.2s ease-out;
+margin-top: 10px;
+	height: 400px;
+	width: 590px;
+	background: rgba(240,240,240,.70);
+}
+
+
+.active, .collapsible:hover {
+  background-color: #ccc;
+}
+
 
 input:-webkit-autofill,
 input:-webkit-autofill:hover, 
