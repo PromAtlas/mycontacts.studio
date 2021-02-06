@@ -1,0 +1,66 @@
+<html>
+<head>
+	<title>My Contacts</title>
+    <link href="css/style.css" rel="stylesheet">
+	<script type="text/javascript" src="js/md5.js"></script>
+	<script type="text/javascript" src="js/code.js"></script>
+	<link href="images/favicon.ico" rel="icon">
+	<script type="text/javascript" src="js/jquery-3.5.1.js"></script>	
+    <link href="https://fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet">
+
+<script>
+
+var coll = document.getElementsByClassName("collapsible");
+var i;
+
+for (i = 0; i < coll.length; i++) {
+  coll[i].addEventListener("click", function() {
+    this.classList.toggle("active");
+    var content = this.nextElementSibling;
+    if (content.style.maxHeight){
+      content.style.maxHeight = null;
+      content.style.background = "rgba(240,240,240,.0)";
+    } else {
+      content.style.maxHeight = content.scrollHeight + "px";
+      content.style.background = "rgba(240,240,240,.70)";
+    }
+  });
+}
+</script>
+
+</head>
+
+<body class = "mainPage">
+	<center>
+
+	<div id="searchDiv">
+		<input type="text" id="searchText" placeholder="Search for Contact"/>
+		<button type="button" id="searchContact" class="buttons" onclick="searchContact()"> Search </button>
+		<span id="contactSearchResult"></span><br />
+	</div>
+
+	<div id="addDiv">
+
+		<button type="button" class="collapsible">Add new Contact</button>
+
+		<div class="content">
+
+		<input type="text" id="firstNameCont" placeholder="First Name" />
+		<input type="text" id="lastNameCont" placeholder="Last Name" /><br />
+		<input type="text" id="emailCont" placeholder="Email" />
+		<input type="text" id="phoneCont" placeholder="Phone Number"/><br />
+		<input type="text" id="addressCont" placeholder="Address"/><br />
+		<input type="text" id="zipCodeCont" placeholder="Zip Code"/>
+		<input type="text" id="cityCont" placeholder="City"/>
+		<input type="text" id="stateCont" placeholder="State"/><br />
+			<button type="button" id="contactAddButton" class="buttons" onclick="addContact();"> Add </button>
+			<span id="contactAddResult"></span><br />
+
+		</div>
+
+	</div>
+
+	</center>
+
+</body>
+</html>

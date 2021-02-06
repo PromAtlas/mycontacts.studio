@@ -1,28 +1,65 @@
-<html>
+<html lang="en">
 <head>
-	<title>COP 4331 LAMP Stack Demo</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 	<script type="text/javascript" src="js/md5.js"></script>
 	<script type="text/javascript" src="js/code.js"></script>
-	<link href="../images/favicon.ico" rel="icon">
-    <link href="css/style.css" rel="stylesheet">	
-    <link href="https://fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet">
+ 
+  <link href="../images/favicon.ico" rel="icon">
+  <link href="css/style.css" rel="stylesheet">	
+  <link href="https://fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet">
+  
+  <title>COP 4331 LAMP Stack Demo</title>
+  
+  <script type="text/javascript">
+	document.addEventListener('DOMContentLoaded', function() 
+	{
+		readCookie();
+	}, false);
+	</script>
+    
 </head>
 
-<body>
+<body class= "mainPage">
 	<center>
-	<h1 id="title">COP 4331 LAMP Stack Demo</h1>
+  <div id="loggedInDiv">
+	  <span id="userName"></span>
+	  <button type="button" id="logoutButton" class="buttons" onclick="doLogout();"> Log Out </button>
+  </div>
 
-	<div id="loginDiv">
-		<span id="inner-title">Welcome Back</span><br />
-			<input type="text" id="firstName" placeholder="First Name" /><br />
-			<input type="text" id="lastName" placeholder="Last Name" /><br />
-		<input type="text" id="loginName" placeholder="Username" /><br />
-		<input type="password" id="loginPassword" placeholder="Password"/><br />
-		<button type="button" id="loginButton" class="button2" onclick="doLogin();"> Sign in </button>
-		<span id="loginResult"></span>
-		<button type="button" id="signupButton" class="button2" onclick="document.location='register.html'"> Sign up </button>
+
+
+	<div id="addDiv">
+		<span id="inner-title">ADD CONTACT</span><br />
+		<input type="text" id="firstNameCont" placeholder="First Name" />
+		<input type="text" id="lastNameCont" placeholder="Last Name" /><br />
+		<input type="text" id="emailCont" placeholder="Email" />
+		<input type="text" id="phoneCont" placeholder="Phone Number"/><br />
+		<input type="text" id="addressCont" placeholder="Address"/><br />
+		<input type="text" id="zipCodeCont" placeholder="Zip Code"/>
+		<input type="text" id="cityCont" placeholder="City"/>
+		<input type="text" id="stateCont" placeholder="State"/><br />
+		<button type="button" id="contactAddButton" class="buttons" onclick="addContact();"> Add Contact </button>
+		<span id="contactAddResult"></span><br />
 	</div>
+
+	<div id="searchDiv">
+		<input type="text" id="searchText" placeholder="Search for Contact"/>
+		<button type="button" id="searchContact" class="buttons" onclick="searchContact()"> Search </button>
+		<span id="contactSearchResult"></span><br />
+   <div class="container" id="contactTable"><br>
+   </div>
+	</div>
+
+
+ 
 	</center>
+ 
 
 </body>
 </html>
