@@ -9,7 +9,6 @@
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 	<script type="text/javascript" src="js/md5.js"></script>
 	<script type="text/javascript" src="js/code.js"></script>
-  
  
   <link href="../images/favicon.ico" rel="icon">
   <link href="css/style.css" rel="stylesheet">	
@@ -26,25 +25,23 @@
     
 </head>
 
-<body class = "mainPage">
+<body class= "mainPage">
 	<center>
- 
-   <div id="loggedInDiv">
+  <div id="loggedInDiv">
 	  <span id="userName"></span>
 	  <button type="button" id="logoutButton" class="buttons" onclick="doLogout();"> Log Out </button>
   </div>
-
-	<div id="compactDiv">
+  
+  	<div id="searchDiv">
 		<input type="text" id="searchText" placeholder="Search for Contact"/>
 		<button type="button" id="searchContact" class="buttons" onclick="searchContact()"> Search </button>
 		<div id="contactSearchResult"></div><br />
    <div class="container" id="contactTable"><br>
    </div>
+	</div>
 
-		<button type="button" class="collapsible">Add new Contact<img id="iconDown" src="../images/down.png"/></button>
-  
-		<div class="content">
-
+	<div id="addDiv">
+		<span id="inner-title">ADD CONTACT</span><br />
 		<input type="text" id="firstNameCont" placeholder="First Name" />
 		<input type="text" id="lastNameCont" placeholder="Last Name" /><br />
 		<input type="text" id="emailCont" placeholder="Email" />
@@ -53,15 +50,14 @@
 		<input type="text" id="zipCodeCont" placeholder="Zip Code"/>
 		<input type="text" id="cityCont" placeholder="City"/>
 		<input type="text" id="stateCont" placeholder="State"/><br />
-			<button type="button" id="contactAddButton" class="buttons" onclick="addContact();"> Add </button>
-			<span id="contactAddResult"></span><br />
-
-		</div>
-
+		<button type="button" id="contactAddButton" class="buttons" onclick="addContact();"> Add Contact </button>
+		<span id="contactAddResult"></span><br />
 	</div>
 
 
+ 
 	</center>
+ 
 
 </body>
 </html>
