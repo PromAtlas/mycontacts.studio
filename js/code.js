@@ -194,6 +194,7 @@ function addContact()
 	var czipCode = document.getElementById("zipCodeCont").value;
 	var ccity = document.getElementById("cityCont").value;
 	var cstate = document.getElementById("stateCont").value;
+  var search = document.getElementById("searchText").value;
 	document.getElementById("contactAddResult").innerHTML = "";
 	
 	var jsonPayload = '{"firstName" : "' + cfirstName + '", "lastName" : "' + clastName + '", "email" : "' + cemail + '", "phone" : "' + cphone + '", "address" : "' + caddress + '", "zipCode" : "' + czipCode + '", "city" : "' + ccity + '", "state" : "' + cstate + '", "userId" : ' + userId + '}';
@@ -209,25 +210,34 @@ function addContact()
 			if (this.readyState == 4 && this.status == 200) 
 			{
 				document.getElementById("contactAddResult").innerHTML = "Contact has been added";
+        searchContact();
 			}
+      
 		};
+
+    
 		xhr.send(jsonPayload);
 	}
 	catch(err)
 	{
 		document.getElementById("contactAddResult").innerHTML = err.message;
 	}
-	
+	//searchContact();
 }
 
 function searchContact()
 {
 	var name = document.getElementById("searchText").value;
+  if (name == "")
+  {
+    return;
+  }
+ 
 	document.getElementById("contactSearchResult").innerHTML = "";
 	
 	var contactList = [['firstName', 'lastName', 'contactID']];
+  var jsonPayload = '{"name" : "' + name + '","userId" : ' + userId + '}'; 
 	
-	var jsonPayload = '{"name" : "' + name + '","userId" : ' + userId + '}';
 	var url = urlBase + '/Search.' + extension;
 	
 	var xhr = new XMLHttpRequest();
@@ -240,7 +250,6 @@ function searchContact()
 			if (this.readyState == 4 && this.status == 200) 
 			{
 				var jsonObject = JSON.parse( xhr.responseText );
-        document.getElementById("contactSearchResult").innerHTML = jsonObject.num_rows > 0 ? "Contact(s) has been retrieved" : "Contact wasn't found";
   
         //var test = jsonObject.contacts[1].firstName;
 				
@@ -250,6 +259,14 @@ function searchContact()
 				}
         
         console.table(contactList);
+        if (contactList.length == 1)
+        {
+          document.getElementById("contactSearchResult").innerHTML = "<br> No Matching Contacts";
+        }
+        else
+        {
+          document.getElementById("contactSearchResult").innerHTML = "Contact(s) retrieved";
+        }
         document.getElementById("contactTable").innerHTML = array2table(contactList);
 			}
 		};
@@ -285,8 +302,8 @@ function view()
 			{
         var jsonObject = JSON.parse( xhr.responseText );
 				//document.getElementById("firstName").innerHTML = firstName;
-        document.getElementById("firstNameView").innerHTML = "First Name: " + jsonObject.firstName;
-        document.getElementById("lastNameView").innerHTML = "Last Name: " + jsonObject.lastName;
+        document.getElementById("firstNameView").innerHTML = jsonObject.firstName;
+        document.getElementById("lastNameView").innerHTML = jsonObject.lastName;
         document.getElementById("emailView").innerHTML = "Email: " + jsonObject.email;
         document.getElementById("phoneView").innerHTML = "Phone #: " + jsonObject.phone;
         document.getElementById("addressView").innerHTML = "Address: " + jsonObject.address;
@@ -306,7 +323,7 @@ function view()
 
 function array2table(array)
 {
-  var table = "<table class='infoTable'>";
+  var table = "<table class='infoTable>";
   var link = "view.html";
   for (var i = 1; i < array.length; i++)
   {
@@ -438,6 +455,8 @@ function deleteContact(conId)
 
 function deleteC()
 {
+  //var search = document.getElementById("searchText").value;
+  
   var jsonPayload = '{"contactId" : ' + contactId + '}';
 	var url = urlBase + '/Delete.' + extension;
   
