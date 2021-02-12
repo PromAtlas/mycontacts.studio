@@ -186,6 +186,20 @@ function registerDisappear()
 
 function addContact()
 {
+  add();
+  document.getElementById("firstNameCont").value = '';
+  document.getElementById("lastNameCont").value = '';
+  document.getElementById("emailCont").value = '';
+  document.getElementById("phoneCont").value = '';
+  document.getElementById("addressCont").value = '';
+  document.getElementById("zipCodeCont").value = '';
+  document.getElementById("cityCont").value = '';
+  document.getElementById("stateCont").value = '';
+  document.getElementById("stateCont").value = '';
+}
+
+function add()
+{
   var cfirstName = document.getElementById("firstNameCont").value;
 	var clastName = document.getElementById("lastNameCont").value;
 	var cemail = document.getElementById("emailCont").value;
