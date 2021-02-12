@@ -1,4 +1,4 @@
-var urlBase = 'http://www.srslystudy.ninja/LAMPAPI'
+var urlBase = 'http://mycontacts.studio/LAMPAPI'
 var extension = 'php';
 
 var userId = 0; 
