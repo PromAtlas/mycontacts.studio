@@ -1,4 +1,4 @@
-var urlBase = 'http://mycontacts.studio/LAMPAPI';
+var urlBase = 'http://www.srslystudy.ninja/LAMPAPI'
 var extension = 'php';
 
 var userId = 0; 
@@ -68,6 +68,7 @@ function doRegister()
 	
 	var login = document.getElementById("loginName").value;
 	var password = document.getElementById("loginPassword").value;
+  var confirmPassword = document.getElementById("confirmPassword").value;
   email = document.getElementById("Email").value;
   firstName = document.getElementById("firstName").value;
   lastName = document.getElementById("lastName").value;
@@ -78,6 +79,11 @@ function doRegister()
 //	var jsonPayload = '{"login" : "' + login + '", "password" : "' + hash + '"}';
 	var jsonPayload = '{"login" : "' + login + '", "password" : "' + password + '", "firstName" : "' + firstName + '", "lastName" : "' + lastName + '", "email" : "' + email + '"}';
 	var url = urlBase + '/Register.' + extension;
+ 
+ if (confirmPassword != password) {
+   document.getElementById("registerResult").innerHTML = "Passwords do not match, please try again";
+   return;
+ }
 
 	var xhr = new XMLHttpRequest();
 	xhr.open("POST", url, true);
@@ -317,7 +323,7 @@ function view()
 
 function array2table(array)
 {
-  var table = "<table border=1>";
+  var table = "<table class='infoTable>";
   var link = "view.html";
   for (var i = 1; i < array.length; i++)
   {
@@ -340,9 +346,9 @@ function array2table(array)
           {
           
             //var val = parseInt(array[i][j], 10);
-            table += "<td><button type='button' onclick='viewContact(" + array[i][j] + ")';> View </button></td>";
-            table += "<td><button type='button' onclick='editContact(" + array[i][j] + ")';> Edit </button></td>";
-            table += "<td><button type='button' onclick='deleteContact(" + array[i][j] + ")';> Delete </button></td>";
+            table += "<td><button type='button' class='buttons' onclick='viewContact(" + array[i][j] + ")';> View </button></td>";
+            table += "<td><button type='button' class='buttons' onclick='editContact(" + array[i][j] + ")';> Edit </button></td>";
+            table += "<td id='del"+array[i][j]+"'><button type='button' class='buttons' onclick='deleteContact(" + array[i][j] + ")';> Delete </button></td>";
           }
           else
           {
@@ -472,8 +478,10 @@ function deleteC()
 					//document.getElementById("deleteResult").innerHTML = jsonObject.message;
 					return;
 				}
-        
-        searchContact();
+        else
+        {
+          $("td#del" + contactId).parent().remove();
+        }
         
 			}
 		};
@@ -496,3 +504,16 @@ function confirmDelete()
     return; 
   }
 }
+
+$(document).ready(function(){
+  $(".collapsible").click(function(){
+this.classList.toggle("active");
+    var content = this.nextElementSibling;
+    if (content.style.maxHeight){
+      content.style.maxHeight = null;
+    } else {
+      content.style.maxHeight = content.scrollHeight + "px";
+    }
+  });
+
+});

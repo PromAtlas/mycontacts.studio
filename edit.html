@@ -20,42 +20,41 @@
  padding-top: 50px;
 	margin-top: 10px;
 	margin-bottom: 5px;
-	height: 800px;
-	width: 240px;
+	width: 500px;
 	background: rgba(240,240,240,.70);
 }
 
- #loggedInDiv{
- padding-top: 50px;
-	margin-top: 10px;
-	margin-bottom: 5px;
-	height: 50px;
-	width: 240px;
+   #loggedInDiv {
+	padding: 30px 30px;
+  padding-bottom: 10px;
+  padding-top: 5px;
+ 	margin-bottom: 5px;
+	height: 80px;
+	width: 440px;
 	background: rgba(240,240,240,.70);
-}
+   }
  </style>
  
 </head>
 
 <body>
 	<center>
-	<h1 id="title">COP 4331 LAMP Stack Demo</h1>
  <div id="loggedInDiv">
-	<span id="userName"></span><br />
+	<span id="userName"></span>
 	<button type="button" id="logoutButton" class="buttons" onclick="doLogout();"> Log Out </button>
 </div>
 
 	<div id="mainDiv">
 		<span id="inner-title">Edit Contact</span><br />
-		<input type="text" id="firstName" placeholder="First Name" /><br />
+		<input type="text" id="firstName" placeholder="First Name" />
 		<input type="text" id="lastName" placeholder="Last Name" /><br />
-		<input type="text" id="email" placeholder="Email" /><br />
+		<input type="text" id="email" placeholder="Email" />
 		<input type="text" id="phone" placeholder="Phone Number"/><br />
-		<input type="text" id="address" placeholder="Address"/><br />
+		<input type="text" id="address" placeholder="Address"/>
 		<input type="text" id="zipCode" placeholder="Zip Code"/><br />
-		<input type="text" id="city" placeholder="City"/><br />
+		<input type="text" id="city" placeholder="City"/>
 		<input type="text" id="state" placeholder="State"/><br />
-		<button type="button" id="contactEditButton" class="button2" onclick="confirmEdit();"> Edit Contact </button>
+		<button type="button" id="contactEditButton" class="buttons" onclick="confirmEdit();"> Save Edit </button>
 		<span id="contactEditResult"></span><br />
     <button type="button" id="mainButton" class="buttons" onclick="document.location='main.html'"> Back </button>
 	</div>
