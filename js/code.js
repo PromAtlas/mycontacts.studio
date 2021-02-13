@@ -337,7 +337,7 @@ function view()
 
 function array2table(array)
 {
-  var table = "<table class='infoTable>";
+  var table = "<table class='infoTable'>";
   var link = "view.html";
   for (var i = 1; i < array.length; i++)
   {
