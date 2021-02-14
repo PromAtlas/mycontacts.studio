@@ -12,8 +12,8 @@
 			// Alter current record with info passed in.
 			$sql = "UPDATE Contacts SET FirstName = '" . $inData["firstName"] . "', LastName = '" . $inData["lastName"] 
 			. "', Email = '" . $inData["email"] . "', Phone = '" . $inData["phone"] . "', Address = '" . $inData["address"] 
-			. "', ZipCode = '" . $inData["zipCode"] . "', City = '" . $inData["city"] . "', State = '" . $inData["state"]
-			. "' WHERE ContactID = '" . $inData["contactId"] . "'";
+			. "', ZipCode = '" . $inData["zipCode"] . "', City = '" . $inData["city"] . "', State = '" . $inData["state"] 
+			. "', DateLastUpdated = NOW() WHERE ContactID = '" . $inData["contactId"] . "'";
 			if ($conn->query($sql) === TRUE)
 			{
 				successfulCreation();

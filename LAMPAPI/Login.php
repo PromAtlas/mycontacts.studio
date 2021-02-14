@@ -10,7 +10,7 @@
 	if ($conn->connect_error) 
 	{
 		returnWithError( $conn->connect_error );
-	} 
+	}
 	else
 	{
 		$sql = "SELECT UserID,FirstName,LastName FROM Users where Login='" . $inData["login"] . "' and Password='" . $inData["password"] . "'";
@@ -21,7 +21,9 @@
 			$firstName = $row["FirstName"];
 			$lastName = $row["LastName"];
 			$id = $row["UserID"];
-			
+		
+			$sql = "UPDATE Users SET DateLastLoggedIn = NOW() WHERE UserID='" . $id . "'";
+			$conn->query($sql);
 			returnWithInfo($firstName, $lastName, $id );
 		}
 		else
