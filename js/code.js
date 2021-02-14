@@ -75,7 +75,7 @@ function doRegister()
 	document.getElementById("registerResult").innerHTML = "";
 
 //	var jsonPayload = '{"login" : "' + login + '", "password" : "' + hash + '"}';
-	var jsonPayload = '{"login" : "' + login + '", "password" : "' + hash + '", "firstName" : "' + firstName + '", "lastName" : "' + lastName + '", "email" : "' + email + '"}';
+	var jsonPayload = '{"login" : "' + login + '", "password" : "' + hash + '", "firstName" : "' + firstName + '", "lastName" : "' + lastName + '"}';
 	var url = urlBase + '/Register.' + extension;
  
  if (confirmPassword != password) {
