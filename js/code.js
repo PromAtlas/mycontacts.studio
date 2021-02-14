@@ -64,15 +64,13 @@ function doRegister()
 	userId = 0;
 	firstName = "";
 	lastName = "";
-  email = "";
 	
 	var login = document.getElementById("loginName").value;
 	var password = document.getElementById("loginPassword").value;
-  var confirmPassword = document.getElementById("confirmPassword").value;
-  email = document.getElementById("Email").value;
-  firstName = document.getElementById("firstName").value;
-  lastName = document.getElementById("lastName").value;
-  var hash = md5( password );
+  	var confirmPassword = document.getElementById("confirmPassword").value;
+  	firstName = document.getElementById("firstName").value;
+  	lastName = document.getElementById("lastName").value;
+ 	 var hash = md5( password );
 	
 	document.getElementById("registerResult").innerHTML = "";
 
